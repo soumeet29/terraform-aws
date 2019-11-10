@@ -39,7 +39,7 @@ tags = {
 ```
 In the instance.tf file, we've speciifed the ami name, instance type.  However, instead of hard coding the instance count we are using the value from the variable declared in the variable.tf file. 
 
-#### Note: we've tagges all instances as Terraform_demo, we can iteratively name them using loops. 
+#### Note: we've tagged all instances as Terraform_demo, we can iteratively name them using loops. 
 
   ### provider.tf
 ```HCL
