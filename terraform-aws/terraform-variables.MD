@@ -1,8 +1,9 @@
-## This file contains some details on how terraform variables work.
+## This document explains how terraform variables work. 
 
 
-If you've used aws cloudformation before , the variales area a lot like parameters on AWS Cloudformation.  To get started quick, hard coding is okay. But eventually you will want to move to using variables, because things become sharable, modular and reusable.
-Anyways, back to variables. Let's say that you want to create a terraform template that will deploy a VPC with few EC2 instances over and over again.\
+If you're familiar with cloudformation, terraform variales area a lot like AWS Cloudformation parameters. When starting out with terraform, you can use hard coded values on your config files(.tf files), but eventually, you will want to move to using variables because that way, things become sharable, modular and reusable.
+
+Let's say that you want to create a terraform template that will deploy a VPC with few EC2 instances several times. 
 
 To log in to the EC2 instance you need to have a key file described. So you could do something like this on the configuration file
 
@@ -22,7 +23,8 @@ resource "aws_instance" "web-server" {
 }
 ```
 
-The problem here is that when you share the file with others, they have to manually edit the key everytime. And sometimes, people forget to do that. Then they don't know what's wrong with the template. 
+When you share this file with others, they have to manually edit the key every time they deploy the template. 
+
 
 This problem can be solved by using variables in terraform.
 
