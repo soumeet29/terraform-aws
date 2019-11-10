@@ -6,20 +6,17 @@ If you're familiar with cloudformation, terraform variales area a lot like AWS C
 Let's say that you want to create a terraform template that will deploy EC2 instances, and you don't know the excat number of instances you need to deploy.  In these cases you can define variables within a config file and modify that file to change the number of instances you deploy. 
 
 
-
+Here, we will authour three config files, variables.tf, provider.tf and instances.tf. Within provider.tf and instance.tf, we use expression that begins with Var.<Name>.   Let's look at come concrete examples 
+  
+  ##variables.tf
 ```HCL
 
+variable "region" {
+  default = "us-east-2"
+}
 
-
-resource "aws_instance" "web-server" {
-  ami = "ami-abcdef"
-  instance_type = "t2.micro"
-  key_name = "my-key"
-  vpc_security_group_ids = ["${aws_security_group.allow_ssh.id}"]
-
-  tags {
-    Name = "terraform-web-server"
-  }
+variable "instance_count" {
+	default = 2
 }
 ```
 
