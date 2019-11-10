@@ -8,7 +8,7 @@ Let's say that you want to create a terraform template that will deploy EC2 inst
 
 Here, we will authour three config files, variables.tf, provider.tf and instances.tf. Within provider.tf and instance.tf, we use expression that begins with Var.<Name>.   Let's look at come concrete examples 
   
-  ## variables.tf
+  ### variables.tf
 ```HCL
 
 variable "region" {
