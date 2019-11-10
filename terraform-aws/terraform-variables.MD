@@ -3,7 +3,7 @@
 
 If you're familiar with cloudformation, terraform variales area a lot like AWS Cloudformation parameters. When starting out with terraform, you can use hard coded values on your config files(.tf files), but eventually, you will want to start using variables because that way, things become sharable, modular and reusable.
 
-Let's say that you want to create a terraform template that will deploy EC2 instances, and you don't know the excat number of instances you need to deploy.  In these cases you can define variables within a config file and modify that file to change the number of instances you deploy. 
+Let's say that you want to create a terraform template that will deploy EC2 instances, and you don't know the exact number of instances you need to deploy.  In these cases you can define default variables within a config file and modify that file to change the number of instances you deploy. Or you can also supply a file with variable values( .tfvars) while running the terraform apply command. 
 
 
 Here, we will authour three config files, variables.tf, provider.tf and instances.tf. Within provider.tf and instance.tf, we use expression that begins with Var.`<Name>.`    Let's look at come concrete examples 
