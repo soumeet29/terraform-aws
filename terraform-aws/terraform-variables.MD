@@ -20,65 +20,39 @@ variable "instance_count" {
 }
 ```
 
-When you share this file with others, they have to manually edit the key every time they deploy the template. 
+We thus specified that we want to launch our instances in us-east-2 by default and that we want to launch two instances. 
 
-
-This problem can be solved by using variables in terraform.
-
-Check the block of code below and notice the difference when trying to achieve the same thing as above this time by using variables.
-
+  ### instances.tf
 ```HCL
-variable "ec2-key" {}
 
-
-resource "aws_instance" "web-server" {
-  ami = "ami-abc123"
+resource "aws_instance" "example" {
+  ami           = "ami-0c64dd618a49aeee8"
   instance_type = "t2.micro"
-  key_name = "${var.ec2-key}"
-  vpc_security_group_ids = ["${aws_security_group.allow_ssh.id}"]
+  count = var.instance_count
 
-  tags {
-    Name = "terraform-web-server"
+tags = {
+    Name = "Terraform_demo"
   }
 }
 
-```
-
-Notice the difference? We refered to the variable to get the key-name instead of hardcoding it. Now when we want to run the script, we will be asked for a value for the key-name.
-
---------
-There are multiple ways to pass in variables when running the terraform apply command.
-In the order of preference
-1) as a command line flag
-```console
-$ terraform apply -var 'key-name=my-key' 
 
 ```
+In the instance.tf file, we've speciifed the ami name, instance type.  However, instead of hard coding the instance count we are using the value from the variable declared in the variable.tf file. 
 
-2) A seperate variable file which you reference like this while running the script.
-```console
-terraform apply  -var-file="vars.tfvars" 
-```
+#### Note: we've tagges all instances as Terraform_demo, we can iteratively name them using loops. 
 
-3) Environment variables:
-Terraform will read environment variables in the form of TF_VAR_name to find the value for a variable. For example, the TF_VAR_access_key variable can be set to set the access_key variable.
-
-4) If none of the first 3 steps are used to set variables, you are asked for variables when you run terraform apply.
-```console
-$ terraform apply
-var.ec2-key
-  Enter a value: 
-```
-
-
-
-5) Default variable values. You could set a default value when declaring the variable. 
+  ### provider.tf
 ```HCL
-variable "ec2-key" { default = "my-key"}
+
+"aws" {
+  # access_key = "ACCESS_KEY_HERE"
+  # secret_key = "SECRET_KEY_HERE"
+  region     = var.region
+}
 
 ```
-
+In my environment, I've setup AWS CLI, and my terraform builds can access my AWS account via those credentials. Like above, the region comes from the region variable from the variable.tf file. 
 
   
   
-For more Reference:https://www.terraform.io/intro/getting-started/variables.html
+For more Reference:https://www.terraform.io/docs/configuration/variables.html
