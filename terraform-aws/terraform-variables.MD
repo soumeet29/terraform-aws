@@ -47,7 +47,7 @@ In the instance.tf file, we've speciifed the ami name, instance type.  However, 
 "aws" {
   # access_key = "ACCESS_KEY_HERE"
   # secret_key = "SECRET_KEY_HERE"
-  region     = var.region
+  region     = "us-east-2"
 }
 
 ```
