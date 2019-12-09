@@ -15,6 +15,10 @@ Here, we will authour three config files, variables.tf, provider.tf and instance
 variable "instance_count" {
 	default = 2
 }
+
+variable "ec2_type" {
+	default = "t2.micro"
+}
 ```
 
 We thus specified that we want to launch our instances in us-east-2 by default and that we want to launch two instances. 
@@ -24,7 +28,7 @@ We thus specified that we want to launch our instances in us-east-2 by default a
 
 resource "aws_instance" "example" {
   ami           = "ami-0c64dd618a49aeee8"
-  instance_type = "t2.micro"
+  instance_type = var.ec2_type
   count = var.instance_count
 
 tags = {
