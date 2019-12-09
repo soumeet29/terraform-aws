@@ -11,9 +11,6 @@ Here, we will authour three config files, variables.tf, provider.tf and instance
   ### variables.tf
 ```HCL
 
-variable "region" {
-  default = "us-east-2"
-}
 
 variable "instance_count" {
 	default = 2
