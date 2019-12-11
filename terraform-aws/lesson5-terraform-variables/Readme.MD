@@ -13,11 +13,11 @@ Here, we will authour three config files, variables.tf, provider.tf and instance
 
 
 variable "instance_count" {
-	default = 2
+	# default = 2
 }
 
 variable "ec2_type" {
-	default = "t2.micro"
+	# default = "t2.micro"
 }
 ```
 
