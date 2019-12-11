@@ -86,6 +86,7 @@ var.ec2-key
 5) Default variable values. You could set a default value when declaring the variable.
 ```HCL
 variable "ec2-key" { default = "my-key"}
+```
 
 ---
 
