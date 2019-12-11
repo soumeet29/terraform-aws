@@ -55,8 +55,44 @@ In the instance.tf file, we've speciifed the ami name, instance type.  However, 
 In my environment, I've setup AWS CLI, and my terraform builds can access my AWS account via those credentials. Like above, the region comes from the region variable from the variable.tf file. 
 
   
-  
-For more Reference:https://www.terraform.io/docs/configuration/variables.html
+--------
+There are multiple ways to pass in variables when running the terraform apply command.
+In the order of preference
+1) as a command line flag
+```console
+$ terraform apply -var 'key-name=my-key'
+
+```
+
+2) A seperate variable file which you reference like this while running the script.
+```console
+terraform apply  -var-file="vars.tfvars"
+```
+> For all files which match `terraform.tfvars` or `*.auto.tfvars` present in the current directory, Terraform  automatically loads them to populate variables. If the file is named something else, you can use the -var-file flag directly to specify a file. These files are the same syntax as Terraform configuration files.
+
+
+3) Environment variables:
+Terraform will read environment variables in the form of TF_VAR_name to find the value for a variable. For example, the TF_VAR_access_key variable can be set to set the access_key variable.
+
+4) If none of the first 3 steps are used to set variables, you are asked for variables when you run terraform apply.
+```console
+$ terraform apply
+var.ec2-key
+  Enter a value:
+```
+
+
+
+5) Default variable values. You could set a default value when declaring the variable.
+```HCL
+variable "ec2-key" { default = "my-key"}
+
+---
+
+
+# References
+https://www.terraform.io/docs/configuration/variables.html
+https://www.terraform.io/docs/providers/aws/index.html
 
 
 Homework: It's your turn now
