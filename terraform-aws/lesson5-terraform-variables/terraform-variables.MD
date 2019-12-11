@@ -57,3 +57,10 @@ In my environment, I've setup AWS CLI, and my terraform builds can access my AWS
   
   
 For more Reference:https://www.terraform.io/docs/configuration/variables.html
+
+
+Homework: It's your turn now
+
+Convert Instance type and EC2 instance tag into variables too.
+
+For more Reference:https://www.terraform.io/intro/getting-started/variables.html
